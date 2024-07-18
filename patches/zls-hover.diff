@@ -1,0 +1,26 @@
+From 9b841fde48cf37b93f2b337b8f5eb78c5a8d8409 Mon Sep 17 00:00:00 2001
+From: darkdarcool <darkdarcool@gmail.com>
+Date: Sat, 11 May 2024 10:18:32 -0400
+Subject: [PATCH] feat(hover): ok this will work
+
+---
+ src/features/hover.zig | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/features/hover.zig b/src/features/hover.zig
+index 96b5eba78..109a4eb50 100644
+--- a/src/features/hover.zig
++++ b/src/features/hover.zig
+@@ -124,9 +124,9 @@ fn hoverSymbolRecursive(
+     const writer = hover_text.writer();
+     if (markup_kind == .markdown) {
+         if (is_fn) {
+-            try writer.print("```zig\n{s}\n```", .{def_str});
++            try writer.print("```zig\n{s}\n___```", .{def_str});
+         } else {
+-            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n```", .{ def_str, resolved_type_str });
++            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n___```", .{ def_str, resolved_type_str });
+         }
+         for (doc_strings.items) |doc|
+             try writer.print("\n\n{s}", .{doc});
+

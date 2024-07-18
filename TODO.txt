@@ -1,0 +1,4 @@
+* Add comments to stuff
+* Add credits
+* Make it super configurable
+* Port everything over to home manager

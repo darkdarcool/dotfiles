@@ -3,7 +3,7 @@
 {
   programs.schizofox = {
     enable = true;
-
+    
     theme = {
       colors = with theme.colors; {
         background-darker = base00;
@@ -14,11 +14,10 @@
       font = theme.fonts.monospace;
 
       extraUserChrome = with theme.colors.withHashtag; ''
-        body {
-          color: red !important;
-        }
+        nav-bar{ background-color: transparent !important; }
       '';
     };
+    
 
     search = {
       defaultSearchEngine = "Google";

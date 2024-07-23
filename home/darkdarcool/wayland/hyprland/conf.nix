@@ -144,10 +144,10 @@
       bindel =
         let playerctl = "${pkgs.playerctl}/bin/playerctl";
         in [
-          #", XF86AudioRaiseVolume, exec, amixer set Master 5%+,5%+"
-          ", XF86AudioRaiseVolume, exec, amixer -D pipewire sset Master 5%+"
-          #", XF86AudioLowerVolume, exec, amixer set Master 5%-,5%-"
-          ", XF86AudioLowerVolume, exec, amixer -D pipewire sset Master 5%-"
+          #", XF86AudioRaiseVolume, exec, amixer -D pipewire sset Master 5%+"
+          ", XF86AudioRaiseVolume, exec, pamixer -i 5"
+          #", XF86AudioLowerVolume, exec, amixer -D pipewire sset Master 5%-"
+          ", XF86AudioLowerVolume, exec, pamixer -d 5"
           ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
           ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
           ", XF86AudioPlay, exec, ${playerctl} play-pause"

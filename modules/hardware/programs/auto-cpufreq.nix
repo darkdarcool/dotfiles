@@ -2,7 +2,7 @@
 
 # We aren't firing the after-burners here
 let
-  powerSettings = let 
+  batteryPowerSettings = let 
     MHz = x: x * 1000;
   in {
     governor = "powersave";
@@ -10,6 +10,18 @@ let
 
     scaling_min_freq = lib.modules.mkDefault (MHz 1200);
     scaling_max_freq = lib.modules.mkDefault (MHz 1800);
+  };
+  chargerPowerSettings = let 
+    MHz = x: x * 1000;
+  in {
+    governor = "performance";
+    turbo = "auto";
+
+    scaling_min_freq = lib.modules.mkDefault (MHz 1800);
+    scaling_max_freq = lib.modules.mkDefault (MHz 3800);
+
+    #scaling_min_freq = lib.modules.mkDefault (MHz 1200);
+    #scaling_max_freq = lib.modules.mkDefault (MHz 1800);
   };
 in
 {
@@ -22,8 +34,8 @@ in
     programs.auto-cpufreq = {
       enable = true;
       settings = {
-        charger = powerSettings;
-        battery = powerSettings;
+        charger = chargerPowerSettings;
+        battery = batteryPowerSettings;
       };
     };
   };

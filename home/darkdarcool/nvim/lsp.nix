@@ -5,8 +5,8 @@
     enable = true;
     inlayHints = true;
     servers = {
-      #denols.enable = true;
-      tsserver.enable = true;
+      denols.enable = true;
+      #tsserver.enable = true;
       rust-analyzer = {
         enable = true;
         package = null;

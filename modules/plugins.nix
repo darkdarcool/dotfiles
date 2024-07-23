@@ -9,6 +9,8 @@
     shell = pkgs.nushell;
 
     packages = with pkgs; [
+      pamixer
+      #auto-cpufreq
       fd
       brightnessctl
       dart-sass
@@ -91,7 +93,7 @@
       gh
       #cloudflared
       #greetd.tuigreet
-      wofi
+      #wofi
       bat
       eza
       alacritty

@@ -72,10 +72,50 @@
             vim.opt.shiftwidth = 2
       			vim.opt.expandtab = true
       			vim.opt.smartindent = true
+
+            -- animations
+            local mouse_scrolled = false
+            for _, scroll in ipairs({ "Up", "Down" }) do
+              local key = "<ScrollWheel" .. scroll .. ">"
+              vim.keymap.set({ "", "i" }, key, function()
+                mouse_scrolled = true
+                return key
+              end, { expr = true })
+            end
+
+            vim.api.nvim_create_autocmd("FileType", {
+              pattern = "grug-far",
+              callback = function()
+                vim.b.minianimate_disable = true
+              end,
+            })
+
+            local animate = require("mini.animate")
+            animate.setup({
+              open = {
+                enable = false 
+              },
+              close = {
+                enable = false
+              },
+              scroll = {
+                timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                subscroll = animate.gen_subscroll.equal({
+                  predicate = function(total_scroll)
+                    if mouse_scrolled then
+                      mouse_scrolled = false
+                      return false
+                    end
+                    return total_scroll > 1
+                  end,
+                }),
+              },
+          })
     '';
 
     plugins = {
       copilot-vim.enable = true;
+      copilot-chat.enable = true;
       copilot-cmp.enable = false;
       cmp-cmdline.enable = true;
       lsp-format.enable = true;
@@ -126,6 +166,24 @@
           repo = "smartcolumn.nvim";
           rev = "cefb17be095ad5526030a21bb2a80553cae09127";
           hash = "sha256-DHIeDNUF9n9s14GVeojIwc5QUPwJMYYl3gRvhvO/rdE=";
+        };
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "copilot-status";
+        src = pkgs.fetchFromGitHub {
+          owner = "ofseed";
+          repo = "copilot-status.nvim";
+          rev = "ea9e7000e82a89aac9d8434675dfed3da4ec1158";
+          hash = "sha256-DR9H8ZDmEidXCyCIzuQTQFpvnPiV0xfUfQC6XOc2RkM=";
+        };
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "mini.animate";
+        src = pkgs.fetchFromGitHub {
+          owner = "echasnovski";
+          repo = "mini.animate";
+          rev = "320fb35460238c436407cd779f63abad98e84870";
+          hash = "sha256-Pql/g9ouKvHnsmzldcx+zIPvxyJrMdYz4aXSkoGlSs8=";
         };
       })
 

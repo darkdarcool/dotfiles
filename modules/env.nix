@@ -5,11 +5,11 @@
   environment.sessionVariables.XCURSOR_SIZE = "28";
   environment.systemPackages = with pkgs; [
     # waybar
-    inputs.waybar.packages."${pkgs.system}".default
+    #inputs.waybar.packages."${pkgs.system}".default
 #    inputs.ghostty.packages."${pkgs.system}".default
-    rofi-wayland
+    #rofi-wayland
     wtype
-    hyprpaper
+    #hyprpaper
     discord
     git
     cloudflare-warp

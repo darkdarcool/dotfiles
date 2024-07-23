@@ -11,6 +11,8 @@
 
     disabledFiletypes.statusline = [ "NvimTree" ];
 
+    ignoreFocus = [ "NvimTree" ];
+
     inactiveSections = {
       lualine_a = [{ }];
       lualine_b = [{ }];
@@ -26,6 +28,10 @@
         color = {
           bg = "NONE";
           fg = "#7b8496";
+        };
+        separator = {
+          left = "";
+          right = "|";
         };
       }];
       lualine_b = [
@@ -73,6 +79,13 @@
         };
       }];
       lualine_x = [
+        {
+          name = "copilot";
+          separator = {
+            left = null;
+            right = "|";
+          };
+        }
         # Shitty lil' hack to get cwd in the statusline
         {
           name = "filename";

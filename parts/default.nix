@@ -1,7 +1,1 @@
-{
-  imports = [
-    ./lib
-    ../hosts
-    ./systems.nix
-  ];
-}
+{ imports = [ ./lib ../hosts ./systems.nix ]; }

@@ -1,14 +1,11 @@
 { inputs, lib, config, ... }:
-let
-  theme = inputs.themes.oxocarbon-dark;
-in
-{
+let theme = inputs.themes.oxocarbon-dark;
+in {
   #options.codefont = lib.mkOption {
   #  type = lib.types.str;
   #  #default = # "JetBrainsMono Nerd Font Mono";
   #  description = "The font to use for code";
   #};
-
 
   #config = {
   #codefont = "JetBrainsMono Nerd Font Mono";
@@ -17,14 +14,12 @@ in
 
   config = {
     modules = {
-      hardware = {
-        auto-cpufreq.enable = true;
-      };
+      hardware = { auto-cpufreq.enable = true; };
       gui = {
         swww = {
           enable = true;
           path = "/home/darkdarcool/Pictures/wallpapers/oxocarbon.jpg";
-        }; 
+        };
       };
     };
 
@@ -33,11 +28,10 @@ in
 
   imports = [
     ../../configuration.nix
-    
+
     {
-      environment.systemPackages = [
-        inputs.ghostty.packages.x86_64-linux.default
-      ];
+      environment.systemPackages =
+        [ inputs.ghostty.packages.x86_64-linux.default ];
     }
 
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -65,9 +59,7 @@ in
       };
 
       home-manager.users.darkdarcool = {
-        home = {
-          stateVersion = "24.05";
-        };
+        home = { stateVersion = "24.05"; };
         imports = [
           inputs.hyprland.homeManagerModules.default
           # inputs.hyprlock.homeManagerModules.hyprlock

@@ -50,7 +50,6 @@
     jack.enable = true;
   };
 
-
   #sound.enable = true;
   hardware.pulseaudio = {
     enable = false;
@@ -87,8 +86,8 @@
   #   };
   boot.loader.systemd-boot.enable = true;
 
- # boot.lanzaboote = {
- #   enable = true;
- #   pkiBundle = "/etc/secureboot";
- # };
+  # boot.lanzaboote = {
+  #   enable = true;
+  #   pkiBundle = "/etc/secureboot";
+  # };
 }

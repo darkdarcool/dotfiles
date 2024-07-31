@@ -1,4 +1,1 @@
-{ lib, ... }:
-{
-  systems = lib.systems.flakeExposed;
-}
+{ lib, ... }: { systems = lib.systems.flakeExposed; }

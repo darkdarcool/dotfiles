@@ -17,14 +17,14 @@
       };
 
       font = {
-        size = 9.5;
+        size = 9;
         normal = {
-          family = theme.fonts.code; #theme.fonts.serif; # "MesloLGSDZ Nerd Font Mono";
-          style = "Regular";
+          family = theme.fonts.monospace; # "MesloLGSDZ Nerd Font Mono";
+          style = "Medium";
         };
       };
 
-      # shell = { program = "tmux"; };
+      shell = { program = "tmux"; };
 
       window = {
         opacity = 0.7;

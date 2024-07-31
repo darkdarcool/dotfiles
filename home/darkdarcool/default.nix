@@ -1,11 +1,5 @@
 { ... }:
 
 {
-  imports = [
-    ./nvim.nix
-    ./desktop.nix
-    ./schizofox.nix
-    ./wayland
-    ./terminals
-  ];
+  imports = [ ./nvim.nix ./desktop.nix ./schizofox.nix ./wayland ./terminals ];
 }

@@ -4,41 +4,57 @@
   programs.nixvim.plugins.lualine = {
     enable = true;
     # theme = "oxocarbon";
-    #sectionSeparators = {
-    #  left = " ";
-    #  right = " ";
-    #};
+    sectionSeparators = {
+      left = "|";
+      right = "|";
+    };
+
+    componentSeparators = {
+      left = "|";
+      right = "|";
+    };
 
     disabledFiletypes.statusline = [ "NvimTree" ];
 
     ignoreFocus = [ "NvimTree" ];
 
     inactiveSections = {
-      lualine_a = [{ }];
-      lualine_b = [{ }];
-      lualine_c = [{ }];
-      lualine_x = [{ }];
-      lualine_y = [{ }];
-      lualine_z = [{ }];
+      lualine_a = [ { } ];
+      lualine_b = [ { } ];
+      lualine_c = [ { } ];
+      lualine_x = [ { } ];
+      lualine_y = [ { } ];
+      lualine_z = [ { } ];
     };
     sections = {
       lualine_a = [{
-        name = "branch";
-        icon = "";
-        color = {
-          bg = "NONE";
-          fg = "#7b8496";
-        };
+        name = "mode";
+
         separator = {
           left = "";
           right = "|";
         };
-      }];
+      }
+      /* {
+           name = "branch";
+           icon = "";
+           color = {
+             bg = "NONE";
+             fg = "#7b8496";
+           };
+
+           separator = {
+             left = "|";
+             right = "|";
+           };
+         }
+      */
+        ];
       lualine_b = [
         {
           name = "filetype";
           separator = {
-            left = "";
+            left = "|";
             right = "";
           };
           padding = {
@@ -57,9 +73,10 @@
               unnamed = "";
             };
           };
-          separator = {
-            left = null;
-            right = "|";
+
+          padding = {
+            left = 0;
+            right = 1;
           };
         }
       ];
@@ -81,27 +98,27 @@
       lualine_x = [
         {
           name = "copilot";
-          separator = {
-            left = null;
-            right = "|";
-          };
+          fmt = # lua
+            ''
+              function(text)
+                -- add seperator bc lualine's dogshit 
+                return text --.. " |"
+              end
+            '';
         }
         # Shitty lil' hack to get cwd in the statusline
         {
           name = "filename";
-          fmt = /*lua*/ ''
-            function(text)    
-              -- all content after the last '/'    
-              local cwd = vim.fn.getcwd()    
-              local cwd = cwd:match(".*/(.*)")
-              local cwd = " " .. cwd
-              return cwd 
-            end
-          '';
-          separator = {
-            left = "";
-            right = "|";
-          };
+          fmt = # lua
+            ''
+              function(text)    
+                -- all content after the last '/'    
+                local cwd = vim.fn.getcwd()    
+                local cwd = cwd:match(".*/(.*)")
+                local cwd = " " .. cwd
+                return cwd 
+              end
+            '';
         }
       ];
       lualine_y = [{
@@ -121,10 +138,6 @@
             # removed = " ";
             removed = " ";
           };
-        };
-        separator = {
-          left = "";
-          right = "|";
         };
       }];
       lualine_z = [{

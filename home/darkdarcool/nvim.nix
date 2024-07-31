@@ -15,14 +15,18 @@
   ];
   programs.nixvim = {
     enable = true;
-    # colorschemes.oxocarbon.enable = true;
+
     colorschemes.cyberdream = {
       enable = true;
-      settings = {
-        transparent = true;
-      };
+      settings = { transparent = true; };
     };
-    # colorschemes.poimandres.enable = true;
+
+    colorschemes.nightfox = {
+      enable = false;
+      flavor = "carbonfox";
+
+      settings = { options = { transparent = true; }; };
+    };
 
     options = {
       number = true;
@@ -33,84 +37,93 @@
     globals.mapleader = " ";
 
     extraConfigLua = ''
-          	-- get rid of the sign column (it moves text and thats a no no)
-            vim.opt.signcolumn = "no"
-            
-            -- rounded hover doc (its 10x better)
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-              border = "rounded",
-              underline = true
-            })
+                	-- get rid of the sign column (it moves text and thats a no no)
+                  vim.opt.signcolumn = "no"
+                  
+                  -- rounded hover doc (its 10x better)
+                  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                    border = "rounded",
+                    underline = true
+                  })
 
-      			-- border color fix for oxocarbon
-            -- vim.cmd("hi FloatBorder guifg=#acacac guibg=#161616")
+            			-- border color fix for oxocarbon
+                  -- vim.cmd("hi FloatBorder guifg=#acacac guibg=#161616")
 
-            vim.opt.title = true
-            vim.opt.titlelen = 0 -- do not shorten title
-            
-            vim.api.nvim_create_autocmd("BufEnter", { 
-              pattern = "*",
-              callback = function()
-              	local path = vim.fn.expand("%:p")
-                -- replace /home/darkdarcool with ~
-                path = string.gsub(path, "/home/darkdarcool", "~")
-                vim.opt.titlestring = "nvim " .. path
-              end
-            })
-
-            -- add colorcolumn
-            vim.opt.colorcolumn = "80"
-	          require("smartcolumn").setup({
-              colorcolumn = "80",
-              disabled_filetypes = { "help", "text", "markdown" },
-              custom_colorcolumn = {},
-              scope = "line",
-            })
-
-            -- tab size
-            vim.opt.tabstop = 2
-            vim.opt.shiftwidth = 2
-      			vim.opt.expandtab = true
-      			vim.opt.smartindent = true
-
-            -- animations
-            local mouse_scrolled = false
-            for _, scroll in ipairs({ "Up", "Down" }) do
-              local key = "<ScrollWheel" .. scroll .. ">"
-              vim.keymap.set({ "", "i" }, key, function()
-                mouse_scrolled = true
-                return key
-              end, { expr = true })
-            end
-
-            vim.api.nvim_create_autocmd("FileType", {
-              pattern = "grug-far",
-              callback = function()
-                vim.b.minianimate_disable = true
-              end,
-            })
-
-            local animate = require("mini.animate")
-            animate.setup({
-              open = {
-                enable = false 
-              },
-              close = {
-                enable = false
-              },
-              scroll = {
-                timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-                subscroll = animate.gen_subscroll.equal({
-                  predicate = function(total_scroll)
-                    if mouse_scrolled then
-                      mouse_scrolled = false
-                      return false
+                  vim.opt.title = true
+                  vim.opt.titlelen = 0 -- do not shorten title
+                  
+                  vim.api.nvim_create_autocmd("BufEnter", { 
+                    pattern = "*",
+                    callback = function()
+                    	local path = vim.fn.expand("%:p")
+                      -- replace /home/darkdarcool with ~
+                      path = string.gsub(path, "/home/darkdarcool", "~")
+                      vim.opt.titlestring = "nvim " .. path
                     end
-                    return total_scroll > 1
-                  end,
-                }),
-              },
-          })
+                  })
+
+                  -- add colorcolumn
+                  vim.opt.colorcolumn = "80"
+      	          require("smartcolumn").setup({
+                    colorcolumn = "80",
+                    disabled_filetypes = { "help", "text", "markdown" },
+                    custom_colorcolumn = {},
+                    scope = "line",
+                  })
+
+                  -- tab size
+                  vim.opt.tabstop = 2
+                  vim.opt.shiftwidth = 2
+            			vim.opt.expandtab = true
+            			vim.opt.smartindent = true
+
+                  -- animations
+                  local mouse_scrolled = false
+                  for _, scroll in ipairs({ "Up", "Down" }) do
+                    local key = "<ScrollWheel" .. scroll .. ">"
+                    vim.keymap.set({ "", "i" }, key, function()
+                      mouse_scrolled = true
+                      return key
+                    end, { expr = true })
+                  end
+
+                  vim.api.nvim_create_autocmd("FileType", {
+                    pattern = "grug-far",
+                    callback = function()
+                      vim.b.minianimate_disable = true
+                    end,
+                  })
+
+                  local animate = require("mini.animate")
+                  animate.setup({
+                    open = {
+                      enable = false 
+                    },
+                    close = {
+                      enable = false
+                    },
+                    scroll = {
+                      timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                      subscroll = animate.gen_subscroll.equal({
+                        predicate = function(total_scroll)
+                          if mouse_scrolled then
+                            mouse_scrolled = false
+                            return false
+                          end
+                          return total_scroll > 1
+                        end,
+                      }),
+                    },
+                })    
+
+                -- colorscheme
+                --require("serenity").setup(override = {
+                --  colors = 
+                --})
+
+                --vim.cmd("colorscheme serenity")
+
+
     '';
 
     plugins = {
@@ -122,7 +135,20 @@
       luasnip.enable = true;
     };
 
-    extraPlugins = [
+    extraPlugins = let
+      kui-nvim-plugin = pkgs.vimUtils.buildVimPlugin {
+        name = "kui-nvim-plugin";
+        src = pkgs.fetchFromGitHub {
+          owner = "romgrk";
+          repo = "kui.nvim";
+          rev = "b3b2f53d6678dce86acc91043b32eab6059ce0cf";
+          hash = "sha256-HH2I/0/lspPU+LiMH/g7w3B4IBXZ8Tj0/UkwqhSE4uw=";
+        };
+
+        buildInputs = [ pkgs.cairo ];
+        extraPackages = [ pkgs.cairo ];
+      };
+    in [
       (pkgs.vimUtils.buildVimPlugin {
         name = "diagflow";
         src = pkgs.fetchFromGitHub {
@@ -187,6 +213,60 @@
         };
       })
 
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "fzy-lua-native";
+        src = pkgs.fetchFromGitHub {
+          owner = "romgrk";
+          repo = "fzy-lua-native";
+          rev = "820f745b7c442176bcc243e8f38ef4b985febfaf";
+          hash = "sha256-Ja4xNGruETSU1nq+r+hkJiFpnMbmL9m2JIKC6gHFGf4=";
+        };
+
+        buildPhase = ''
+          make
+        '';
+      })
+
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "serenity";
+        src = pkgs.fetchFromGitHub {
+          owner = "Wansmer";
+          repo = "serenity.nvim";
+          rev = "3aebe727ed84907676ac99fcc7a95c929a6cf640";
+          hash = "sha256-532Ev20sMzDvdBsoROVOg/0p12mIt1tpf9jkbVU/S3c=";
+        };
+      })
+
+      /* (pkgs.buildFHSUserEnv {
+           name = "kui-nvim";
+           targetPkgs = pkgs: with pkgs; [
+             cairo
+             kui-nvim-plugin
+           ];
+         })
+         ( pkgs.vimUtils.buildVimPlugin {
+             name = "kui";
+             src = pkgs.fetchFromGitHub {
+               owner = "romgrk";
+               repo = "kui.nvim";
+               rev = "b3b2f53d6678dce86acc91043b32eab6059ce0cf";
+               hash = "sha256-HH2I/0/lspPU+LiMH/g7w3B4IBXZ8Tj0/UkwqhSE4uw=";
+             };
+
+             buildInputs = [ pkgs.cairo ];
+             extraPackages = [ pkgs.cairo ];
+           })
+
+         (pkgs.vimUtils.buildVimPlugin {
+           name = "kirby";
+           src = pkgs.fetchFromGitHub {
+             owner = "romgrk";
+             repo = "kirby.nvim";
+             rev = "31d43bc746fbc01f3bae03b3ff4adb9fa2cb9cdc";
+             hash = "sha256-8lfqS0pjpxsr2uR1pvtPcZZjSqHJDoz+uORTxOK0ZAs=";
+           };
+         })
+      */
       #(pkgs.vimUtils.buildVimPlugin {
       #	name = "glow-hover";
       #	src = pkgs.fetchFromGitHub {

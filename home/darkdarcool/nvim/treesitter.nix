@@ -22,5 +22,6 @@
     ensureInstalled = "all";
     disabledLanguages = [ "markdown" ];
     indent = true;
+    nixGrammars = false;
   };
 }

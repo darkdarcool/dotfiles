@@ -56,15 +56,16 @@
     settings = {
       mapping = {
         "<Tab>" = "cmp.mapping.confirm({ select = false })";
-        "<CR>" = /* lua */ ''
-          function(fallback)
-            if cmp.visible() then	
-              cmp.select_next_item()
-            else 
-              fallback()
+        "<CR>" = # lua
+          ''
+            function(fallback)
+              if cmp.visible() then	
+                cmp.select_next_item()
+              else 
+                fallback()
+              end
             end
-          end
-        '';
+          '';
       };
 
       sources = [
@@ -81,19 +82,15 @@
     extraOptions = {
       completion = { completeopt = "menu,menuone,noinsert"; };
       window = {
-        documentation = {
-          border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-        };
+        documentation = { border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ]; };
         completion = {
           side_padding = 0;
           border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-          winhighlight =
-            "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None";
+          winhighlight = "Normal:Normal,FloatBorder:BorderBG,Search:None";
+          # "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None";
         };
       };
-      formatting = {
-        fields = [ "kind" "abbr" "menu" ];
-      };
+      formatting = { fields = [ "kind" "abbr" "menu" ]; };
 
       snippet.expand = "luasnip";
     };
@@ -103,7 +100,7 @@
       ":" = {
         mapping = { __raw = "cmp.mapping.preset.cmdline()"; };
 
-        sources = [{ name = "path"; } { name = "cmdline"; }];
+        sources = [ { name = "path"; } { name = "cmdline"; } ];
       };
     };
   };

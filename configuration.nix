@@ -44,7 +44,9 @@
   system.stateVersion = "unstable"; # "23.11"; # Did you read the comment?
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "Meslo" "JetBrainsMono" "Lilex" ]; })
+    (nerdfonts.override {
+      fonts = [ "FiraCode" "Meslo" "JetBrainsMono" "Lilex" ];
+    })
     sf-mono-liga-bin
   ];
 
@@ -60,22 +62,21 @@
   #      inherit pkgs;
   #    };
   #};
-  /*
-    programs.auto-cpufreq.enable = true;
-    # optionally, you can configure your auto-cpufreq settings, if you have any
-    programs.auto-cpufreq.settings = {
-    charger = {
-      # governor = "performance";
-      governor = "powersave";
-      turbo = "never";
-    };
+  /* programs.auto-cpufreq.enable = true;
+     # optionally, you can configure your auto-cpufreq settings, if you have any
+     programs.auto-cpufreq.settings = {
+     charger = {
+       # governor = "performance";
+       governor = "powersave";
+       turbo = "never";
+     };
 
-    battery = {
-      governor = "powersave";
-      # governor = "powersave";
-      turbo = "never";
-    };
-    };
+     battery = {
+       governor = "powersave";
+       # governor = "powersave";
+       turbo = "never";
+     };
+     };
   */
 
   #nix.settings = {

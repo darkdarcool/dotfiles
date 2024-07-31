@@ -24,10 +24,12 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
-    extraConfig = ''
-       # used for less common options, intelligently combines if defined in multiple places.
-
-      			such as enablePlasmaBrowserIntegration, enableGnome'';
+    #plugins = [
+    #  {
+    #    plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
+    #  }
+    #];
+    extraConfig = "";
   };
 
   xdg.portal.enable = true;

@@ -1,7 +1,5 @@
 { ... }:
 
 {
-  imports = [
-    ./swww.nix
-  ];
+  imports = [ ./swww.nix ];
 }

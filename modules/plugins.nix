@@ -9,6 +9,9 @@
     shell = pkgs.nushell;
 
     packages = with pkgs; [
+      cairo
+      kitty
+      hyper
       pamixer
       #auto-cpufreq
       fd

@@ -119,43 +119,43 @@
         "$mainMod, V, togglefloating,"
         "$mainMod, J, togglesplit,"
         "$mainMod, L, exec, hyprlock"
-        "$mainMod, W, exec, pkill waybar && hyprctl dispatch exec waybar"
+        #"$mainMod, W, exec, pkill waybar && hyprctl dispatch exec waybar"
+        "$mainMod, T, exec, ags -t launcher"
         "$mainMod SHIFT, N, exec, swaync-client -t -sw"
         ''SUPER_SHIFT, S, exec, grim -g "$(slurp -d)" - | wl-copy''
         #"ALT, Tab, cyclenext,"
         #"ALT, Tab, bringactivetotop,"
         #"ALT,tab,overview:toggle"
-      ] ++ (builtins.concatLists (builtins.genList
-        (x:
-          let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
-          in [
-            "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
-            "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-          ]) 10));
+      ] ++ (builtins.concatLists (builtins.genList (x:
+        let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+        in [
+          "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+          "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        ]) 10));
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      # bindr = [ "SUPER, SUPER_L, exec, rofi -show drun -show-icons" ];
-      bindr = [ "SUPER, SUPER_L, exec, ags -t launcher " ];
+      # bindr = [ "SUPER, SUPER_L, exec, ags -t launcher " ];
+      bindr = [ "SUPER, SUPER_L, exec, rofi -show drun" ];
 
-      bindel =
-        let playerctl = "${pkgs.playerctl}/bin/playerctl";
-        in [
-          #", XF86AudioRaiseVolume, exec, amixer -D pipewire sset Master 5%+"
-          ", XF86AudioRaiseVolume, exec, pamixer -i 5"
-          #", XF86AudioLowerVolume, exec, amixer -D pipewire sset Master 5%-"
-          ", XF86AudioLowerVolume, exec, pamixer -d 5"
-          ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-          ", XF86AudioPlay, exec, ${playerctl} play-pause"
-          ", XF86AudioNext, exec, ${playerctl} next"
-        ];
+      bindel = let playerctl = "${pkgs.playerctl}/bin/playerctl";
+      in [
+        #", XF86AudioRaiseVolume, exec, amixer -D pipewire sset Master 5%+"
+        ", XF86AudioRaiseVolume, exec, pamixer -i 5"
+        #", XF86AudioLowerVolume, exec, amixer -D pipewire sset Master 5%-"
+        ", XF86AudioLowerVolume, exec, pamixer -d 5"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ", XF86AudioPlay, exec, ${playerctl} play-pause"
+        ", XF86AudioNext, exec, ${playerctl} next"
+      ];
 
       bindl = [
-        ", XF86AudioMute, exec, amixer set Master toggle"
+        #", XF86AudioMute, exec, amixer set Master toggle"
+        ", XF86AudioMute, exec, pamixer -t"
         ", switch:Lid Switch, exec, hyprlock"
       ];
 
@@ -182,6 +182,7 @@
         #"wireplumber"
         # lock hyprland on open
         "hyprlock"
+        "hyprctl setcursor phinger-cursors-dark 48"
       ] ++ osConfig.modules.system.startup;
     };
   };

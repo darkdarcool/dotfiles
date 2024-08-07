@@ -48,6 +48,9 @@
       fonts = [ "FiraCode" "Meslo" "JetBrainsMono" "Lilex" ];
     })
     sf-mono-liga-bin
+    noto-fonts
+    noto-fonts-cjk-serif
+    noto-fonts-cjk-sans
   ];
 
   hardware.bluetooth.settings = {

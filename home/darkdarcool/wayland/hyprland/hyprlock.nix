@@ -16,7 +16,7 @@
         # Blank for all monitors
         monitor = "";
         # Instead of an image being shown as the background, a screenshot is taken and used
-        #path = "screenshot";
+        path = "screenshot";
         color = "rgba(0, 0, 0, 0.1)";
         # Pretty blur :)
         blur_passes = 2;

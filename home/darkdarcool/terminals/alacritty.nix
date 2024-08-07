@@ -5,6 +5,9 @@
     enable = true;
 
     settings = {
+      #import = [
+      #  "${config.xdg.configHome}/alacritty/themes/cyberdream.toml"
+      #];
       cursor = {
         blink_interval = 500;
         thickness = 0.15;

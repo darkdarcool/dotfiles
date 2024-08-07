@@ -24,4 +24,6 @@
     indent = true;
     nixGrammars = false;
   };
+
+  programs.nixvim.plugins.treesitter-context.enable = true;
 }

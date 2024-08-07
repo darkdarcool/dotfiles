@@ -3,7 +3,7 @@
 {
   programs.nixvim.plugins.lualine = {
     enable = true;
-    # theme = "oxocarbon";
+
     sectionSeparators = {
       left = "|";
       right = "|";
@@ -26,6 +26,7 @@
       lualine_y = [ { } ];
       lualine_z = [ { } ];
     };
+
     sections = {
       lualine_a = [{
         name = "mode";
@@ -34,22 +35,8 @@
           left = "";
           right = "|";
         };
-      }
-      /* {
-           name = "branch";
-           icon = "";
-           color = {
-             bg = "NONE";
-             fg = "#7b8496";
-           };
+      }];
 
-           separator = {
-             left = "|";
-             right = "|";
-           };
-         }
-      */
-        ];
       lualine_b = [
         {
           name = "filetype";
@@ -78,23 +65,44 @@
             left = 0;
             right = 1;
           };
+
         }
       ];
-      lualine_c = [{
-        name = "diagnostics";
-        extraConfig = {
-          symbols = {
-            # error = " ";
-            error = " ";
-            # warn = " ";
-            warn = " ";
-            # info = " ";
-            info = " ";
-            # hint = "󰝶 ";
-            hint = "󰛿 ";
+
+      lualine_c = [
+        {
+          name = "diagnostics";
+          extraConfig = {
+            symbols = {
+              # error = " ";
+              error = " ";
+              # warn = " ";
+              warn = " ";
+              # info = " ";
+              info = " ";
+              # hint = "󰝶 ";
+              hint = "󰛿 ";
+            };
+
+            update_in_insert = true;
+            always_visible = true;
           };
-        };
-      }];
+        }
+        {
+          name = "navic";
+
+          extraConfig = {
+            color_correction = "dynamic";
+            navic_opts = null;
+
+            seperator = {
+              left = "|";
+              right = "";
+            };
+          };
+        }
+      ];
+
       lualine_x = [
         {
           name = "copilot";
@@ -121,6 +129,7 @@
             '';
         }
       ];
+
       lualine_y = [{
         name = "diff";
         extraConfig = {
@@ -140,6 +149,7 @@
           };
         };
       }];
+
       lualine_z = [{
         name = "progress";
         color = {

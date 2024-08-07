@@ -84,6 +84,8 @@
               hint = "󰛿 ";
             };
 
+            sources = [ "nvim_workspace_diagnostic" ];
+
             update_in_insert = true;
             always_visible = true;
           };

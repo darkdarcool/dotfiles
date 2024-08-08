@@ -31,7 +31,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     howdy.url = "github:fufexan/nixpkgs/howdy";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/hyprland";
+      submodules = true;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hycov = {
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";

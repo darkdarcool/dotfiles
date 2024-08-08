@@ -9,6 +9,9 @@
     shell = pkgs.nushell;
 
     packages = with pkgs; [
+      # SPECIAL :)
+      hyprshot
+      libnotify
       cairo
       kitty
       hyper

@@ -77,3 +77,6 @@ animate.setup({
     }),
   },
 })    
+
+-- github copilot
+require('copilot').setup({})

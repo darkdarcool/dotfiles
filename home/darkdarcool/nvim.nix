@@ -44,7 +44,7 @@
     extraConfigLua = builtins.readFile ./nvim/init.lua;
 
     plugins = {
-      copilot-vim.enable = true;
+      copilot-lua.enable = true;
       copilot-chat.enable = true;
       copilot-cmp.enable = false;
       cmp-cmdline.enable = true;
@@ -60,7 +60,7 @@
       };
 
       combinePlugins = {
-        enable = true;
+        enable = false;
       };
     };
 

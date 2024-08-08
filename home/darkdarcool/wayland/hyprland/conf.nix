@@ -26,6 +26,10 @@
     '';
 
     settings = {
+      debug = {
+        disable_logs = false;
+      };
+
       "$mainMod" = "SUPER";
       decoration = {
         blur = {
@@ -122,7 +126,9 @@
         #"$mainMod, W, exec, pkill waybar && hyprctl dispatch exec waybar"
         "$mainMod, T, exec, ags -t launcher"
         "$mainMod SHIFT, N, exec, swaync-client -t -sw"
-        ''SUPER_SHIFT, S, exec, grim -g "$(slurp -d)" - | wl-copy''
+        #''SUPER_SHIFT, S, exec, grim -g "$(slurp -d)" - | wl-copy''
+        "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
+        "SUPER_SHIFT, A, exec, hyprshot -m window --clipboard-only"
         #"ALT, Tab, cyclenext,"
         #"ALT, Tab, bringactivetotop,"
         #"ALT,tab,overview:toggle"
@@ -182,7 +188,7 @@
         #"wireplumber"
         # lock hyprland on open
         "hyprlock"
-        "hyprctl setcursor phinger-cursors-dark 48"
+        "hyprctl setcursor phinger-cursors-dark 24"
       ] ++ osConfig.modules.system.startup;
     };
   };

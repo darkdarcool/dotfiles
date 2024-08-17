@@ -7,22 +7,15 @@
     #package = inputs.hyprland;
 
     # plugins = [ inputs.hycov.packages.${pkgs.system}.hycov ];
+    plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap ];
 
     extraConfig = ''
-      #bind = ALT, tab, hycov:toggleoverview
-      #bind = ALT, left, hycov:movefocus, l
-      #bind = ALT, right, hycov:movefocus, r
-      #bind = ALT, up, hycov:movefocus, u
-      #bind = ALT, down, hycov:movefocus, d
-
-      #plugin {
-      #  hycov {
-      #	  overview_gappo = 60 #gaps width from screen
-      #		overview_gappi = 24 #gaps width from clients
-      #	  hotarea_size = 10 #hotarea size in bottom left,10x10
-      #		enable_hotarea = 1 # enable mouse cursor hotarea
-      #	}
-      #}
+      plugin {
+        hyprwinwrap {
+          # class is an EXACT match and NOT a regex!
+          class = alacritty-bg
+        }
+      }
     '';
 
     settings = {
@@ -53,7 +46,7 @@
         "col.shadow_inactive" = "0xff9ccfd8cc";
         dim_inactive = true;
         dim_strength = 0.2;
-        rounding = 5;
+        rounding = 5 + 2;
         #screen_shader = "${./dither.frag}";
       };
 
@@ -145,7 +138,8 @@
       ];
 
       # bindr = [ "SUPER, SUPER_L, exec, ags -t launcher " ];
-      bindr = [ "SUPER, SUPER_L, exec, rofi -show drun" ];
+      # bindr = [ "SUPER, SUPER_L, exec, rofi -show drun" ];
+      bindr = [ "SUPER, SUPER_L, exec, anyrun" ];
 
       bindel = let playerctl = "${pkgs.playerctl}/bin/playerctl";
       in [

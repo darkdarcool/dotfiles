@@ -1,4 +1,4 @@
-{ inputs, lib, config, ... }:
+{ inputs, lib, config, pkgs, ... }:
 let theme = inputs.themes.oxocarbon-dark;
 in {
   #options.codefont = lib.mkOption {
@@ -31,8 +31,12 @@ in {
 
     {
       environment.systemPackages =
-        [ inputs.ghostty.packages.x86_64-linux.default ];
+        [ 
+          inputs.ghostty.packages.x86_64-linux.default
+          inputs.anyrun.packages.x86_64-linux.anyrun
+        ];
     }
+
 
     inputs.lanzaboote.nixosModules.lanzaboote
     (../../overlays.nix)
@@ -66,6 +70,7 @@ in {
           #inputs.nur.hmModules.nur
           inputs.nixvim.homeManagerModules.nixvim
           inputs.schizofox.homeManagerModule
+          inputs.anyrun.homeManagerModules.default
           # ./hosts/darkdarcool/nvim.nix
           # ./home.nix
           ../../home.nix

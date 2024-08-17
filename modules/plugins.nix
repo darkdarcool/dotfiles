@@ -9,8 +9,15 @@
     shell = pkgs.nushell;
 
     packages = with pkgs; [
+      gnumake42
+      helix
+      
+      discordo
       # SPECIAL :)
       hyprshot
+      #my-sysmenu
+      sysmenu
+      syshud
       libnotify
       cairo
       kitty

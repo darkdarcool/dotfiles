@@ -24,6 +24,7 @@ let
                 config = {
                   #modules.system.hostname = args.host;
                   nixpkgs.hostPlatform = lib.mkDefault args.system;
+                  networking.hostName = args.host;
                   #nixpkgs.allowUnfree = true;
                   nix.settings = {
                     substituters = [

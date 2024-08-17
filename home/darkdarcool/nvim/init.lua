@@ -2,9 +2,26 @@
 vim.opt.signcolumn = "no"
                   
 -- rounded hover doc (its 10x better)
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-  underline = true
+--vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--  border = "rounded",
+--  underline = true
+--})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = true,
+    underline = true,
+    virtual_text = {
+        spacing = 5,
+        severity_limit = "Hint",
+    },
+    update_in_insert = true,
+})
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
 })
 
 -- border color fix for oxocarbon
@@ -20,6 +37,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     -- replace /home/darkdarcool with ~
     path = string.gsub(path, "/home/darkdarcool", "~")
     vim.opt.titlestring = "nvim " .. path
+
+    -- we like treesitter here (just a lil hack for rn)
+    vim.cmd("TSEnable highlight")
+    vim.cmd("TSEnable indent")
   end
 })
 
@@ -79,4 +100,4 @@ animate.setup({
 })    
 
 -- github copilot
-require('copilot').setup({})
+--require('copilot').setup({})

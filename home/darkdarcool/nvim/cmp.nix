@@ -44,6 +44,7 @@
         Operator = "󰆕";
         TypeParameter = "";
         Copilot = "";
+        Supermaven = "";
       };
 
     };
@@ -70,6 +71,7 @@
 
       sources = [
         #{ name = "copilot"; }
+        { name = "supermaven"; }
         { name = "nvim_lsp"; }
         { name = "otter"; }
         { name = "nvim_lua"; }

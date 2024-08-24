@@ -11,7 +11,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     underline = true,
     virtual_text = {
         spacing = 5,
-        severity_limit = "Hint",
+    --        severity_limit = "Hint",
     },
     update_in_insert = true,
 })
@@ -101,3 +101,7 @@ animate.setup({
 
 -- github copilot
 --require('copilot').setup({})
+require("supermaven-nvim").setup({
+  disable_inline_completion = true,
+  log_level = "off",
+})

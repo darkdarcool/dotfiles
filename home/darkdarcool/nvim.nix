@@ -92,6 +92,15 @@
           hash = "sha256-Pql/g9ouKvHnsmzldcx+zIPvxyJrMdYz4aXSkoGlSs8=";
         };
       })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "supermaven-nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "supermaven-inc";
+          repo = "supermaven-nvim";
+          rev = "d71257f431e190d9236d7f30da4c2d659389e91f";
+          hash = "sha256-v5OIPQJhNdZA3Prw6DGq8fRxsmKvouGbt0IKhAZdlQM=";
+        };
+      })
     ];
   };
 }

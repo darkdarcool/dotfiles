@@ -30,13 +30,11 @@ in {
     ../../configuration.nix
 
     {
-      environment.systemPackages =
-        [ 
-          inputs.ghostty.packages.x86_64-linux.default
-          inputs.anyrun.packages.x86_64-linux.anyrun
-        ];
+      environment.systemPackages = [
+        inputs.ghostty.packages.x86_64-linux.default
+        inputs.anyrun.packages.x86_64-linux.anyrun
+      ];
     }
-
 
     inputs.lanzaboote.nixosModules.lanzaboote
     (../../overlays.nix)

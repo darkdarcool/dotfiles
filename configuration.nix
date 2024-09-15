@@ -57,6 +57,8 @@
     General = { Enable = "Source,Sink,Media,Socket"; };
   };
 
+  hardware.sensor.iio.enable = true;
+
   #nixpkgs.config.packageOverrides = pkgs: {
   #  nur = import
   #    (builtins.fetchTarball

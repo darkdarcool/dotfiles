@@ -33,7 +33,7 @@
       settings = { options = { transparent = true; }; };
     };
 
-    options = {
+    opts = {
       number = true;
       shiftwidth = 2;
     };
@@ -59,9 +59,7 @@
         plugins = true;
       };
 
-      combinePlugins = {
-        enable = false;
-      };
+      combinePlugins = { enable = false; };
     };
 
     extraPlugins = [

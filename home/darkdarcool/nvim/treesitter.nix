@@ -4,26 +4,31 @@
   programs.nixvim.plugins.treesitter = {
     enable = true;
 
-    # vim, regex, lua, bash, markdown, and markdown_inline are required by noice.nvim
-    ensureInstalled = [
-      "c"
-      "lua"
-      "typescript"
-      "rust"
-      "javascript"
-      "markdown"
-      "markdown_inline"
-      "swift"
-      "nix"
-      "vim"
-      "regex"
-      "bash"
-      "zig"
-    ];
-    # ensureInstalled = "all";
-    disabledLanguages = [ "markdown" ];
-    indent = true;
     nixGrammars = false;
+
+    settings = {
+      highlight = {
+        enable = true;
+        disable = [ "markdown" ];
+      };
+      indent.enable = true;
+      ensure_installed = [
+        "c"
+        "lua"
+        "typescript"
+        "jsdoc"
+        "rust"
+        "javascript"
+        "markdown"
+        "markdown_inline"
+        "swift"
+        "nix"
+        "vim"
+        "regex"
+        "bash"
+        "zig"
+      ];
+    };
   };
 
   programs.nixvim.plugins.treesitter-context.enable = true;

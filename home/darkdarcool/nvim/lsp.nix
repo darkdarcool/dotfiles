@@ -6,20 +6,18 @@
     inlayHints = true;
     servers = {
       denols.enable = true;
-      #tsserver.enable = true;
       rust-analyzer = {
         enable = true;
         package = null;
         installRustc = false;
+        installCargo = false;
       };
-      nil_ls.enable = true;
+      nil-ls.enable = true;
       zls = {
         enable = true;
-        #package = inputs.zls.packages."${pkgs.system}".zls;
         package = null;
       };
-
-      # gleam.enable = true;
+      lua-ls.enable = true;
     };
     onAttach = ''
         if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then

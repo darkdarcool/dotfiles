@@ -42,7 +42,7 @@
     };
 
     misc = {
-      drmFix = true;
+      drm.enable = true;
       disableWebgl = false;
       startPageURL =
         "about:home"; # file://${builtins.readFile ./startpage.html}";
@@ -69,13 +69,13 @@
       };
     };
 
-    bookmarks = [{
-      Title = "github";
-      URL = "https://github.com";
-      Favicon = "https://github.com/favicon.ico";
-      Placement = "toolbar";
-      # Folder = "FolderName";
-    }];
+    #bookmarks = [{
+    #  Title = "github";
+    #  URL = "https://github.com";
+    #  Favicon = "https://github.com/favicon.ico";
+    #  Placement = "toolbar";
+    #  # Folder = "FolderName";
+    #}];
 
   };
 }

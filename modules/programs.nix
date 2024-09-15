@@ -38,8 +38,10 @@
   programs.light.enable = true;
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
   services.blueman.enable = true;
   programs._1password.enable = true;

@@ -18,9 +18,13 @@
       phocus-oxocarbon =
         prev.callPackage ./derivations/phocus-oxocarbon.nix { };
       # zls-fixed = prev.callPackage ./derivations/zls-fixed.nix { pkgs = pkgs; inputs = inputs; };
-      hyprshot = prev.callPackage ./derivations/hyprshot.nix { pkgs = pkgs; inputs = inputs; };
-      
+      hyprshot = prev.callPackage ./derivations/hyprshot.nix {
+        pkgs = pkgs;
+        inputs = inputs;
+      };
+
       my-sysmenu = prev.callPackage ./derivations/sys/sysmenu.nix { };
+      # poop = prev.callPackage ./derivations/poop.nix { pkgs = pkgs; inputs = inputs; };
     })
 
     # Overlay 3: Define overlays in other files

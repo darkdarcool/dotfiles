@@ -3,7 +3,7 @@
 {
   programs.nixvim.plugins.auto-save = {
     enable = false;
-    triggerEvents = [ "InsertLeave" "TextChanged" ];
-    extraOptions = { execution_message = { enabled = false; }; };
+    settings = { trigger_events = [ "InsertLeave" "TextChanged" ]; };
+    settings = { execution_message = { enabled = false; }; };
   };
 }

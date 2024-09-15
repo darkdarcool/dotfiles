@@ -79,9 +79,7 @@
         { name = "buffer"; }
         { name = "luasnip"; }
       ];
-    };
 
-    extraOptions = {
       completion = { completeopt = "menu,menuone,noinsert"; };
       window = {
         documentation = { border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ]; };

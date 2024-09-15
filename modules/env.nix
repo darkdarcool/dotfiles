@@ -4,16 +4,17 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.XCURSOR_SIZE = "28";
   environment.systemPackages = with pkgs; [
+    inputs.zen-browser.packages."${pkgs.system}".default
     # waybar
     #inputs.waybar.packages."${pkgs.system}".default
-    #    inputs.ghostty.packages."${pkgs.system}".default
+    inputs.ghostty.packages."${pkgs.system}".default
     rofi-wayland
     wtype
     #hyprpaper
     discord
     git
     cloudflare-warp
-    gnome3.adwaita-icon-theme
+    adwaita-icon-theme
     networkmanagerapplet
     libgcc
     # zig_0_12
@@ -22,7 +23,8 @@
     obsidian
     python311
     ripgrep
-    gccgo13
+    # gccgo13
+    go
     brightnessctl
     openssl
     pavucontrol

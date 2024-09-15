@@ -1,14 +1,5 @@
-{
-  stdenv,
-  lib,
-  fetchFromGitHub,
-  pkg-config,
-  git,
-  gtkmm4,
-  gtk4-layer-shell,
-  wrapGAppsHook4,
-  unstableGitUpdater,
-}:
+{ stdenv, lib, fetchFromGitHub, pkg-config, git, gtkmm4, gtk4-layer-shell
+, wrapGAppsHook4, unstableGitUpdater, }:
 
 stdenv.mkDerivation {
   pname = "sysmenu";
@@ -33,16 +24,9 @@ stdenv.mkDerivation {
   #  ./002-cflags-fix.patch
   #];
 
-  nativeBuildInputs = [
-    pkg-config
-    git
-    wrapGAppsHook4
-  ];
+  nativeBuildInputs = [ pkg-config git wrapGAppsHook4 ];
 
-  buildInputs = [
-    gtkmm4
-    gtk4-layer-shell
-  ];
+  buildInputs = [ gtkmm4 gtk4-layer-shell ];
 
   installPhase = ''
     runHook preInstall

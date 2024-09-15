@@ -2,7 +2,7 @@
 pkgs.stdenv.mkDerivation rec {
   pname = "hyprshot";
   version = "1.3.0";
-  
+
   src = fetchFromGitHub {
     owner = "Gustash";
     repo = "Hyprshot";

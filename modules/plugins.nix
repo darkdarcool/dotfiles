@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   users.users.darkdarcool = {
     isNormalUser = true;
     description = "darkdarcool";
@@ -9,19 +9,23 @@
     shell = pkgs.nushell;
 
     packages = with pkgs; [
+      wluma
+      cowsay
+      lolcat
+      blueberry
       gnumake42
       helix
-      
+
       discordo
       # SPECIAL :)
       hyprshot
+      hyperfine
       #my-sysmenu
       sysmenu
       syshud
       libnotify
       cairo
       kitty
-      hyper
       pamixer
       #auto-cpufreq
       fd
@@ -40,7 +44,7 @@
       sbctl
       xdg-desktop-portal-hyprland
       #pipewire
-      nixfmt
+      nixfmt-classic
       #wireplumber
       #iniparser
       obs-studio

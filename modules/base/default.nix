@@ -7,6 +7,9 @@
   };
   config = {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.extraOptions = ''
+      warn-dirty = false
+    '';
     modules.system.startup = [ ];
 
     programs.ssh = {

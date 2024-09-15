@@ -28,7 +28,7 @@
     }
     {
       key = "<leader>e";
-      action.__raw = # lua 
+      action.__raw = # lua
         ''
           function() 
             vim.diagnostic.open_float({ border = "rounded" })
@@ -37,7 +37,7 @@
     }
     {
       key = "<C-f>";
-      action.__raw = # lua 
+      action.__raw = # lua
         ''
           function()
             if not require("noice.lsp").scroll(4) then
